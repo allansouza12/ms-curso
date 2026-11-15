@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: ms-curso            # nome com que o serviço se registra no Eureka
+  datasource:
+    url: jdbc:mysql://localhost:3306/ms_curso?createDatabaseIfNotExist=true&serverTimezone=America/Bahia
+    username: root
+    password:                 # Deixe vazio para que cada um coloque sua senha local
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
