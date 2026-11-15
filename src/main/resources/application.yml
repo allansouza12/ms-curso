@@ -3,11 +3,13 @@ server:
 
 spring:
   application:
-    name: ms-curso            # nome com que o serviço se registra no Eureka
+    name: ms-curso
+  config:
+    import: optional:classpath:secrets.yml
   datasource:
     url: jdbc:mysql://localhost:3306/ms_curso?createDatabaseIfNotExist=true&serverTimezone=America/Bahia
     username: root
-    password:                 # Deixe vazio para que cada um coloque sua senha local
+    password: ${DB_PASSWORD:}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -18,4 +20,6 @@ eureka:
   client:
     enabled: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
